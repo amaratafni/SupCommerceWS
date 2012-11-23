@@ -13,15 +13,17 @@
 				</c:otherwise>
 			</c:choose>
 			
-			<%-- On crée un bouton 'cart' et on affiche le nombre de produits dans le panier --%>
-			<c:choose>
-				<c:when test="${empty sessionScope.shoppingCart}">
-					<a href="showCart" data-role="button" data-iconpos="left" data-icon="cart">Cart (0)</a>
-				</c:when>
-				<c:otherwise>
-					<a href="showCart" data-role="button" data-iconpos="left" data-icon="cart">Cart (<c:out value="${fn:length(sessionScope.shoppingCart)}"/>)</a>
-				</c:otherwise>
-			</c:choose>
+			<%-- On crée un bouton 'cart' et on affiche le nombre de produits dans le panier pour les utilisateurs --%>
+			<c:if test="${empty sessionScope.username}">
+				<c:choose>
+					<c:when test="${empty sessionScope.shoppingCart}">
+						<a href="showCart" data-role="button" data-iconpos="left" data-icon="cart">Cart (0)</a>
+					</c:when>
+					<c:otherwise>
+						<a href="showCart" data-role="button" data-iconpos="left" data-icon="cart">Cart (<c:out value="${fn:length(sessionScope.shoppingCart)}"/>)</a>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 			
 			<br/>
 			

@@ -26,7 +26,7 @@
 		<p>Total: <c:out value="${totalCart}"/>&euro;</p>
 		
 		<div data-role="fieldcontain">
-			<a id="paiementButton" data-role="button" data-theme="a">Payer</a>
+			<a id="paiementButton" href="payment" data-role="button" data-theme="a">Proc&eacute;der au paiement</a>
 			<a id="emptyCartButton" href="#" data-role="button" onClick="confirmBeforeDeleteWithoutForm(this,'emptyCart');">Vider le panier</a>
 		</div>
 		

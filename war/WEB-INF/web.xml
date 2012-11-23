@@ -125,6 +125,14 @@
  	<servlet-name>EmptyCartServlet</servlet-name>
  	<url-pattern>/emptyCart</url-pattern>
  </servlet-mapping>
+    <servlet>
+ 	<servlet-name>PaymentServlet</servlet-name>
+ 	<servlet-class>com.supinfo.supcommercews.servlet.PaymentServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ 	<servlet-name>PaymentServlet</servlet-name>
+ 	<url-pattern>/payment</url-pattern>
+ </servlet-mapping>
  <filter>
  	<filter-name>AuthenticateFilter</filter-name>
  	<filter-class>com.supinfo.supcommercews.filter.AuthenticateFilter</filter-class>
