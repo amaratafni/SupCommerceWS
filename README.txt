@@ -1,0 +1,1 @@
+Cette application est un exemple de webservice utilisant Java EE (Servlet, pages JSP, JAX-RS, JPA) et hébergé par Google App Engine (SDK version 1.7.3).
