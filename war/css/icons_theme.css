@@ -1,0 +1,6 @@
+@CHARSET "ISO-8859-1";
+
+.ui-icon-cart{
+	background-image: url("../img/cart.png");
+	background-color: rgba(0, 0, 0, 0);
+}
