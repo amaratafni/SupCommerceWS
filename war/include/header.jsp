@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>SupCommerce 3.0</title>
+	<title>SupCommerce</title>
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -22,7 +22,6 @@
 	<script>
 		$(document).bind("mobileinit", function () {
 			$.mobile.ajaxEnabled = false;
-// 		//	$.mobile.selectmenu.prototype.options.hidePlaceholderMenuItems = false;
 		});
  	</script>
 	<script src="../JQM/jquery.mobile-1.1.1.min.js" type="text/javascript"></script>

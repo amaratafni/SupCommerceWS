@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
-import javax.persistence.Query;
 
 import com.google.appengine.api.datastore.Key;
 import com.supinfo.supcommercews.dao.CategoryDao;
@@ -60,9 +59,6 @@ public class JpaCategoryDao implements CategoryDao {
 		
 		try {
 			category = em.find(Category.class, id);
-//			Query qu = em.createQuery("SELECT c FROM Category c WHERE c.id=:id");
-//			qu.setParameter("id", id);
-//			category = (Category) qu.getSingleResult();
 		} catch(PersistenceException e) {
 			System.err.println(e.getMessage());
 		} finally {

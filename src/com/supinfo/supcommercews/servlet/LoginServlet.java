@@ -13,24 +13,21 @@ public class LoginServlet extends HttpServlet {
        
 	private static final long serialVersionUID = -3058703981573443565L;
 
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
     public LoginServlet() {
         super();
     }
     
     /**
-     * Forward to the jsp file to log in
+     * Redirect the user to the login JSP file
      */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("login.jsp");
 	}
 
 	/**
-	 * Add the username to the session scope and redirect the user to the products' list jsp file
+	 * Check if the login informations are corrects.
+	 * If they are, redirect the user to the listProduct JSP file, else redirect the user to the login page
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
@@ -38,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 		
 		if(username.equals("admin") && password.equals("@dm1n89")) {
 			request.getSession().setAttribute("username", username);
-//			request.getRequestDispatcher("/listProduct").forward(request, response);
 			response.sendRedirect("listProduct");
 		} else {
 			response.sendRedirect("login");

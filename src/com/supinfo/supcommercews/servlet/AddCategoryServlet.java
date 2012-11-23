@@ -17,19 +17,14 @@ public class AddCategoryServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = -3958559221182870031L;
 
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
     public AddCategoryServlet() {
         super();
     }
-
     
 	/**
-	 * Forward the jsp file to create a new category
+	 * Redirect the user to the JSP file to create a new category
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.getRequestDispatcher("addCategory.jsp").forward(request, response);
 		response.sendRedirect("addCategory.jsp");
 	}
 
@@ -46,8 +41,6 @@ public class AddCategoryServlet extends HttpServlet {
 			DaoFactory.getCategoryDao().addCategory(category);
 			
 			response.sendRedirect("../listProduct");
-//			request.getRequestDispatcher("../listProduct").forward(request, response);
-//			getServletContext().getRequestDispatcher("listProduct").forward(request, response);
 		}
 	}
 }

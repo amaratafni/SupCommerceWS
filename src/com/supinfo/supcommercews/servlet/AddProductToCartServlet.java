@@ -17,6 +17,9 @@ public class AddProductToCartServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2092312773974642455L;
 
+	/**
+	 * Add a product to the shoppingCart
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,7 +33,7 @@ public class AddProductToCartServlet extends HttpServlet {
 
 			cart.add(DaoFactory.getProductDao().findProduct(key));
 			req.getSession().setAttribute("shoppingCart", cart);
-			System.out.println("cart: "+cart.size());
+
 		} catch (IllegalArgumentException ex) {
 			System.err.println(ex.getMessage());
 		}

@@ -19,12 +19,18 @@ public class ListProductServlet extends HttpServlet {
         super();
     }
     
+    /**
+     * Retrieve the list of products and forward the user to the listProduct JSP file
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setAttribute("listProducts", DaoFactory.getProductDao().getAllProducts());
     	request.getRequestDispatcher("listProduct.jsp").forward(request, response);
     }
     
+    /**
+     * Call doGet() method
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException ,IOException {
     	doGet(request, response);
     };

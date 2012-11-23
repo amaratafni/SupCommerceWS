@@ -17,30 +17,29 @@ import com.supinfo.supcommercews.entity.Product;
 public class ShowProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ShowProductServlet() {
         super();
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Show the details of a product
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Key id = KeyFactory.stringToKey(request.getParameter("id"));
-		if(id==null)
-			id = (Key) request.getAttribute("id");
 		
-		Product product = DaoFactory.getProductDao().findProduct(id);
-		
-		if(product==null)
-			response.sendRedirect("/listProduct");		
-		else {
-//			System.out.println(product.getPrice().floatValue());
-//			System.out.println(product.getPrice());
-			request.setAttribute("product", product);
-			request.getRequestDispatcher("showProduct.jsp").forward(request, response);
+		try {
+			Key id = KeyFactory.stringToKey(request.getParameter("id"));
+			
+			Product product = DaoFactory.getProductDao().findProduct(id);
+			
+			if(product==null)
+				response.sendRedirect("/listProduct");		
+			else {
+				request.setAttribute("product", product);
+				request.getRequestDispatcher("showProduct.jsp").forward(request, response);
+			}
+		} catch(IllegalArgumentException ex) {
+			System.err.println(ex.getMessage());
+			response.sendRedirect("/listProduct");	
 		}
 		
 	}

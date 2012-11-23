@@ -16,17 +16,17 @@ import com.supinfo.supcommercews.dao.DaoFactory;
 public class RemoveProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public RemoveProductServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	super.doGet(req, resp);
+    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Remove a product
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Key id = KeyFactory.stringToKey(request.getParameter("id"));

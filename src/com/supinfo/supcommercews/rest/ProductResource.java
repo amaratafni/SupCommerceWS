@@ -22,26 +22,33 @@ import com.supinfo.supcommercews.entity.Category;
 import com.supinfo.supcommercews.entity.Product;
 
 @Path("/products")
-//@Consumes(MediaType.APPLICATION_JSON)
-
 public class ProductResource {
 
+	/**
+	 * Retrieve all products
+	 * @return JSON
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getAllProducts() {
+		// On recupere la liste des produits //
 		ArrayList<Product> list = new ArrayList<Product>();
 		list.addAll(DaoFactory.getProductDao().getAllProducts());
-
+		
 		try {
+			
+			JSONObject mainObj = new JSONObject();
 			JSONArray array = new JSONArray();
 		
 			for(Product product : list) {
+				// On construit un objet JSON en lui ajoutant les champs du produit //
 				JSONObject productObj = new JSONObject();
 				productObj.put("id", KeyFactory.keyToString(product.getId()));
 				productObj.put("name", product.getName());
 				productObj.put("content", product.getContent());
 				productObj.put("price", String.valueOf(product.getPrice()));
 				
+				// On recupere aussi les informations sur la categorie du produit //
 				JSONObject categoryObj = new JSONObject();
 				Category category = product.getCategory();
 				if(category!=null) {
@@ -49,24 +56,20 @@ public class ProductResource {
 					categoryObj.put("name", category.getName());
 				}
 				
+				// On ajoute le JSONObject de la category au produit puis le produit au JSONArray //
 				productObj.put("category", categoryObj);
 				array.put(productObj);
 			}
 			
-			return "{\"products\": "+array.toString()+"}";
+			// On ajoute la liste des produits à la racine du JSONObject //
+			mainObj.put("products", array);
+			
+			return mainObj.toString();
 			
 		} catch (JSONException e) {
-			System.out.println("plop");
 			System.err.println(e.getMessage());
-			return "";
+			return "{\"products\":[]}";
 		}
-		
-//		return "plop";
 	}
 	
-	
-//	@GET @Path("/{id}")
-//	public Product getProduct(@PathParam("id") Key productId) {
-//		return DaoFactory.getProductDao().findProduct(productId);
-//	}
 }

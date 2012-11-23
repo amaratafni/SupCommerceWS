@@ -17,6 +17,9 @@ public class RemoveProductToCartServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -3055260820113484333L;
 
+	/**
+	 * Remove a product from the shopping cart
+	 */
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException ,IOException {
 		try {
@@ -26,7 +29,7 @@ public class RemoveProductToCartServlet extends HttpServlet {
 			if(product!=null) {
 				ArrayList<Product> cart = (ArrayList<Product>) request.getSession().getAttribute("shoppingCart");
 				if(cart!=null)
-					cart.remove(product);
+					System.out.println(cart.remove(product));
 			}
 				
 		} catch(IllegalArgumentException ex) {
@@ -36,6 +39,9 @@ public class RemoveProductToCartServlet extends HttpServlet {
 		resp.sendRedirect("showCart");
 	};
 	
+	/**
+	 * Call doGet() method
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(request, resp);

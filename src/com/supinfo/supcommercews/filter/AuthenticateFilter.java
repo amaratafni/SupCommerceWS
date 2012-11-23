@@ -11,17 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet Filter implementation class AuthenticateFilter
- */
 public class AuthenticateFilter implements Filter {
 
-    public AuthenticateFilter() {
-        // TODO Auto-generated constructor stub
-    }
+    public AuthenticateFilter() {}
 
 	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 * Vérifie qu'un administrateur est authentifié avant d'atteindre la page demandée, sinon renvoie sur la page de login
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest)request).getSession();
@@ -36,15 +31,9 @@ public class AuthenticateFilter implements Filter {
 
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void destroy() {}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void init(FilterConfig arg0) throws ServletException {}
 
 }

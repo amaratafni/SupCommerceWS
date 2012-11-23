@@ -2,6 +2,11 @@
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 <%@ include file="include/menu.jsp" %>
 
+<script>
+	$(function() {
+	});
+</script>
+
 <h1>Mon panier</h1>
 
 <c:choose>
@@ -21,8 +26,10 @@
 		<p>Total: <c:out value="${totalCart}"/>&euro;</p>
 		
 		<div data-role="fieldcontain">
-			<a id="paiementButton" data-role="button" >Payer</a>
+			<a id="paiementButton" data-role="button" data-theme="a">Payer</a>
+			<a id="emptyCartButton" href="#" data-role="button" onClick="confirmBeforeDeleteWithoutForm(this,'emptyCart');">Vider le panier</a>
 		</div>
+		
 	</c:otherwise>
 </c:choose>
 

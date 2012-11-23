@@ -4,12 +4,10 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import com.google.appengine.api.datastore.Key;
@@ -28,11 +26,11 @@ public class Category implements Serializable {
 	@OneToMany(mappedBy="category")
 	private Collection<Product> products;
 	
-	public Category() {}
 	
 	public Category(String name) {
 		this.name = name;
 	}
+	
 	
 	public Key getId() {
 		return id;

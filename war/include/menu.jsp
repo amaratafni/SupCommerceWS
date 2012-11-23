@@ -22,8 +22,10 @@
 					<a href="showCart" data-role="button" data-iconpos="left" data-icon="cart">Cart (<c:out value="${fn:length(sessionScope.shoppingCart)}"/>)</a>
 				</c:otherwise>
 			</c:choose>
+			
 			<br/>
 			
+			<%-- On ajuste la taille de navbar --%>
 			<c:choose>
 				<c:when test="${empty sessionScope.username}">
 					<div data-role="navbar">
@@ -35,7 +37,10 @@
 			
 			
 			<ul>
+				<%-- User & Admin --%>
 				<li><a href="listProduct" data-role="button">Liste des produits</a></li>
+				
+				<%-- Admin --%>
 				<c:if test="${!empty sessionScope.username}">
 					<li><a href="auth/addProduct" data-role="button" >Ajouter un produit</a></li>
 					<li><a href="auth/addCategory" data-role="button">Ajouter une cat&eacute;gorie</a></li>

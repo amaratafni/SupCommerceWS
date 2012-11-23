@@ -41,9 +41,6 @@
 			</select>
 		</div>
 		
-<%-- 		<c:set var="productKey" scope="page" value="${product.id}"></c:set> --%>
-<%-- 		<c:set var="id" scope="request" value="<%= KeyFactory.keyToString((Key)pageContext.getAttribute("productKey")) %>"></c:set> --%>
-<%-- 		<c:set var="productId" scope="request" value="${productKey}"></c:set> --%>
 		<c:set var="id" scope="page" value="${product.id}"/>
 		<input type="hidden" id="productId" name="productId" value="<%= KeyFactory.keyToString((Key)pageContext.getAttribute("id")) %>"/>
 		
@@ -58,6 +55,7 @@
 	</form>
 	
 	<script>
+		// On selectionne la categorie à laquelle appartient l'objet //
 		$('#category').val("<%= request.getAttribute("categoryKey") %>");
 	</script>
 	

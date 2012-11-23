@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   
-	<welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
 <servlet>
@@ -116,6 +116,14 @@
  <servlet-mapping>
  	<servlet-name>RemoveProductToCartServlet</servlet-name>
  	<url-pattern>/removeProductToCart</url-pattern>
+ </servlet-mapping>
+   <servlet>
+ 	<servlet-name>EmptyCartServlet</servlet-name>
+ 	<servlet-class>com.supinfo.supcommercews.servlet.EmptyCartServlet</servlet-class>
+ </servlet>
+ <servlet-mapping>
+ 	<servlet-name>EmptyCartServlet</servlet-name>
+ 	<url-pattern>/emptyCart</url-pattern>
  </servlet-mapping>
  <filter>
  	<filter-name>AuthenticateFilter</filter-name>

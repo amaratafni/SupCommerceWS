@@ -41,6 +41,10 @@ public class Product implements Serializable {
 	}
 	
 	
+	public Key getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -77,12 +81,9 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 
-	public Key getId() {
-		return id;
-	}
 	
 	/**
-	 * Redéfinition de la methode equals pour comparer les Key
+	 * Deux produits sont egaux si leurs noms, contenus et prix sont les mêmes
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -99,7 +100,6 @@ public class Product implements Serializable {
 	@Override
 	public int hashCode() {
 		int result = 17;
-//		result = 37 * result + (int)(id.getId()^(id.getId()>>>32));
 		result = 37 * result + name.hashCode();
 		result = 37 * result + content.hashCode();
 		result = 37 * result + price.hashCode();
