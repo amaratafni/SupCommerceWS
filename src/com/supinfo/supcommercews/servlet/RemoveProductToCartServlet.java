@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.datanucleus.util.Log4JLogger;
+
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.log.AppLogLine;
+import com.google.appengine.api.log.LogService;
 import com.supinfo.supcommercews.dao.DaoFactory;
 import com.supinfo.supcommercews.entity.Product;
 
@@ -28,8 +32,12 @@ public class RemoveProductToCartServlet extends HttpServlet {
 			
 			if(product!=null) {
 				ArrayList<Product> cart = (ArrayList<Product>) request.getSession().getAttribute("shoppingCart");
-				if(cart!=null)
-					System.out.println(cart.remove(product));
+				if(cart!=null) {
+					AppLogLine log = new AppLogLine();
+					log.setLogMessage(String.valueOf(cart.contains(product)));
+					
+					cart.remove(product);
+				}
 			}
 				
 		} catch(IllegalArgumentException ex) {

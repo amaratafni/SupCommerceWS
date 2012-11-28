@@ -30,10 +30,10 @@ public class ShowCartServlet extends HttpServlet {
 		ArrayList<Product> products = (ArrayList<Product>) req.getSession().getAttribute("shoppingCart");
 		
 		if(products!=null && products.size()>0) {
-			BigDecimal sum = new BigDecimal(0);
-			sum.setScale(2);
+			BigDecimal sum = BigDecimal.ZERO;
+
 			for(Product p : products)
-				sum = sum.add(new BigDecimal(p.getPrice().toPlainString()));
+				sum = sum.add(p.getPrice());
 
 			sum = sum.setScale(2,RoundingMode.HALF_UP);
 			req.setAttribute("totalCart", sum);

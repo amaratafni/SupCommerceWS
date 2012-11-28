@@ -35,13 +35,13 @@
 			<label for="category">Cat&eacute;gorie</label>
 			<select id="category" name="category" data-native-menu="false">
 				<c:forEach items="${categories}" var="c">
-					<c:set value="${c.id}" scope="page" var="key"></c:set>
+					<c:set value="${c.key}" scope="page" var="key"></c:set>
 					<option value="<%= KeyFactory.keyToString((Key)pageContext.getAttribute("key"))  %>">${c.name}</option>
 				</c:forEach>
 			</select>
 		</div>
 		
-		<c:set var="id" scope="page" value="${product.id}"/>
+		<c:set var="id" scope="page" value="${product.key}"/>
 		<input type="hidden" id="productId" name="productId" value="<%= KeyFactory.keyToString((Key)pageContext.getAttribute("id")) %>"/>
 		
 		<fieldset class="ui-grid-a">

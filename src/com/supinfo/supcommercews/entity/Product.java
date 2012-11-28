@@ -12,18 +12,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Entity
 @Table(name="products")
+@XmlRootElement
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = -6491580734752070406L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Key id;
+	private Key key;
 	private String name;
 	private String content;
 	@Column(scale=2)
@@ -33,7 +38,7 @@ public class Product implements Serializable {
 	@JoinColumn(name="category_fk")
 	private Category category;
 
-	
+
 	public Product(String name, String content, BigDecimal price) {
 		this.name = name;
 		this.content = content;
@@ -41,8 +46,14 @@ public class Product implements Serializable {
 	}
 	
 	
-	public Key getId() {
-		return id;
+	@XmlTransient
+	public Key getKey() {
+		return key;
+	}
+	
+	@XmlElement(name="id")
+	public String getId() {
+		return KeyFactory.keyToString(key);
 	}
 	
 	public String getName() {

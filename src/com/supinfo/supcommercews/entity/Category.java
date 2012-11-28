@@ -9,18 +9,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Entity
 @Table(name="categories")
+@XmlRootElement
 public class Category implements Serializable {
 
 	private static final long serialVersionUID = -4959975553152009352L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Key id;
+	private Key key;
 	private String name;
 	
 	@OneToMany(mappedBy="category")
@@ -32,8 +37,14 @@ public class Category implements Serializable {
 	}
 	
 	
-	public Key getId() {
-		return id;
+	@XmlTransient
+	public Key getKey() {
+		return key;
+	}
+	
+	@XmlElement(name="id")
+	public String getId() {
+		return KeyFactory.keyToString(key);
 	}
 	
 	public String getName() {
@@ -44,6 +55,7 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 	
+	@XmlTransient
 	public Collection<Product> getProducts() {
 		return products;
 	}

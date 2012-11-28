@@ -11,6 +11,7 @@ import javax.persistence.PersistenceException;
 import com.google.appengine.api.datastore.Key;
 import com.supinfo.supcommercews.dao.ProductDao;
 import com.supinfo.supcommercews.entity.Product;
+import com.supinfo.supcommercews.exception.UnknownItemException;
 
 
 public class JpaProductDao implements ProductDao{
@@ -75,10 +76,16 @@ public class JpaProductDao implements ProductDao{
 	public Product findProduct(Key id) {
 		EntityManager em = factory.createEntityManager();
 		
-		Product p = em.find(Product.class, id);
-		em.close();
+		try {
+			Product p = em.find(Product.class, id);
+			if(p==null)
+				throw new UnknownItemException(id);
+			
+			return p;
+		} finally {
+			em.close();
+		}
 		
-		return p;
 	}
 
 	@Override
@@ -90,7 +97,7 @@ public class JpaProductDao implements ProductDao{
 			
 			t.begin();
 //			em.refresh(product);
-			product = em.merge(product);
+			em.merge(product);
 			t.commit();
 			
 		} catch(PersistenceException ex) {

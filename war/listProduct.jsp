@@ -22,7 +22,7 @@
 
 	<ul data-role="listview" data-inset="true">
 		<c:forEach items="${listProducts}" var="p">
-			<c:set var="key" scope="page" value="${p.id}"/>
+			<c:set var="key" scope="page" value="${p.key}"/>
 			<li><a id="showButton" href="showProduct?id=<%= KeyFactory.keyToString((Key)pageContext.getAttribute("key")) %>">${p.name}</a></li>
 		</c:forEach>
 	</ul>

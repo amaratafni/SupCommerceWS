@@ -44,7 +44,7 @@
 					<label for="category">Cat&eacute;gorie </label>
 					<select id="category" name="category" data-native-menu="false">
 						<c:forEach items="${requestScope.categories}" var="c">
-							<c:set var="key" scope="page" value="${c.id}"></c:set>
+							<c:set var="key" scope="page" value="${c.key}"></c:set>
 							<option value="<%= KeyFactory.keyToString((Key)pageContext.getAttribute("key")) %>"><c:out value="${c.name}"></c:out></option>
 						</c:forEach>
 					</select>

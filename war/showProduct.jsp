@@ -29,8 +29,8 @@
 		<p>Cat&eacute;gorie: <c:out value="${product.category.name}"></c:out></p>
 		
 		<form id="myForm" name="myForm">
-			<c:set value="${product.id}" scope="request" var="key"></c:set>
-			<input type="hidden" id="id" name="id" value="<%= KeyFactory.keyToString((Key)request.getAttribute("key")) %>" />
+			<c:set value="${product.key}" scope="page" var="key"></c:set>
+			<input type="hidden" id="id" name="id" value="<%= KeyFactory.keyToString((Key)pageContext.getAttribute("key")) %>" />
 		</form>
 					
 		<c:choose>

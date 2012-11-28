@@ -35,7 +35,7 @@ public class UpdateProductServlet extends HttpServlet {
 		if(categories!=null && product!=null) {
 			request.setAttribute("categories", categories);
 			request.setAttribute("product", product);
-			request.setAttribute("categoryKey", KeyFactory.keyToString(product.getCategory().getId()));
+			request.setAttribute("categoryKey", KeyFactory.keyToString(product.getCategory().getKey()));
 			request.getRequestDispatcher("updateProduct.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("../listProduct");

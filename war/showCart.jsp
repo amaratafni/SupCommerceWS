@@ -16,7 +16,7 @@
 	<c:otherwise>
 		<ul data-role="listview" data-inset="true">
 			<c:forEach items="${sessionScope.shoppingCart}" var="p">
-				<c:set var="key" scope="page" value="${p.id}"/>
+				<c:set var="key" scope="page" value="${p.key}"/>
 				<li data-icon="delete"><a id="delete" href="#" onClick="confirmBeforeDeleteWithoutForm(this,'removeProductToCart?id=<%= KeyFactory.keyToString((Key)pageContext.getAttribute("key")) %>')">${p.name} - ${p.price}&euro;</a></li>
 			</c:forEach>
 		</ul>

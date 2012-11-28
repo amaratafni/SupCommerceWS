@@ -11,6 +11,7 @@ import javax.persistence.PersistenceException;
 import com.google.appengine.api.datastore.Key;
 import com.supinfo.supcommercews.dao.CategoryDao;
 import com.supinfo.supcommercews.entity.Category;
+import com.supinfo.supcommercews.exception.UnknownItemException;
 
 
 public class JpaCategoryDao implements CategoryDao {
@@ -51,19 +52,20 @@ public class JpaCategoryDao implements CategoryDao {
     	return categories;
 	}
 
-	@SuppressWarnings("finally")
 	@Override
 	public Category findCategory(Key id) {
 		EntityManager em = factory.createEntityManager();
-		Category category = null;
 		
 		try {
-			category = em.find(Category.class, id);
-		} catch(PersistenceException e) {
-			System.err.println(e.getMessage());
+			Category category = em.find(Category.class, id);
+			if(category==null) {
+				throw new UnknownItemException(id);
+			}
+			
+			return category;
+			
 		} finally {
 			em.close();
-			return category;
 		}
 		
 	}
